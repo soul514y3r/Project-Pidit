@@ -1,0 +1,32 @@
+:root {
+}
+
+.Label {
+    font-size: 40px;
+    top: 70%;
+    align-self: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    background-color: rgb(26, 26, 26);
+    border-top-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 6px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    width: 25%;
+    height: 25%;
+    scale: 0.01 0.01;
+    transition-duration: 0.3s;
+}
+
+.Label-Pulse {
+    scale: 1 1;
+    transition-duration: 0.3s;
+}

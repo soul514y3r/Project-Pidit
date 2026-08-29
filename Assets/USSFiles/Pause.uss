@@ -14,6 +14,18 @@
     border-bottom-left-radius: 7px;
     transition-duration: 0.3s;
     font-size: 64px;
+    -unity-text-align: upper-center;
+    align-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
 }
 
 .button:focus {
@@ -31,4 +43,25 @@
     scale: 1.1 1.1;
     transition-duration: 0.3s;
     font-size: 69px;
+    margin-top: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.button:active {
+    transition-duration: 0.1s;
+    scale: 0.9 0.9;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
 }

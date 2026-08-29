@@ -15,7 +15,7 @@ public class FollowPlayerScript : MonoBehaviour
     
     void Update()
     {
-        MoveVec = Vector2.MoveTowards(transform.position, player.position, Mathf.Pow(speed*Vector2.Distance(transform.position, player.position), speedExp));
+        MoveVec = Vector2.MoveTowards(transform.position, player.position, Mathf.Pow(speed*Vector2.Distance(transform.position, player.position), speedExp)*Time.timeScale);
         MoveDeltaX = transform.position.x - player.position.x;
         MoveDeltaY = transform.position.y - player.position.y;
 

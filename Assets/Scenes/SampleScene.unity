@@ -751,6 +751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 708131157}
   - component: {fileID: 708131156}
+  - component: {fileID: 708131158}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -808,7 +809,7 @@ PanelRenderer:
   m_MaskInteraction: 0
   serializedVersion: 1
   m_PanelSettings: {fileID: 11400000, guid: 64820caf626731233b2e8a0a37f12aee, type: 2}
-  sourceAsset: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 2df83bf2e012ecda0b6f54b24a6cbefc, type: 3}
   m_ParentUI: {fileID: 0}
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -831,6 +832,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &708131158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708131155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f1a9371cbbd6f828483df9043c00a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  renderer: {fileID: 708131156}
 --- !u!1 &984450499
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +881,7 @@ MonoBehaviour:
   test: {fileID: 11400000, guid: 376e493fec92644c8a59e02ab8221bc9, type: 2}
   names: 0
   speed: 3
+  DecaySpeed: 4
 --- !u!114 &984450501
 MonoBehaviour:
   m_ObjectHideFlags: 0

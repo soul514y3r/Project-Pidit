@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     public DialogueTest test;
     public DialogueNames names;
     public float speed;
+    public float DecaySpeed;
 
     void Awake()
     {
@@ -21,6 +22,11 @@ public class DialogueManager : MonoBehaviour
     {
         renderer.RegisterUIReloadCallback(OnUIReload);
     }
+    void OnDisable()
+    {
+        if(dialogueLabel != null)
+        dialogueLabel.UnregisterCallback<ChangeEvent<string>>(OnTextValueChanged);
+    }
 
     IEnumerator Display(int index)
     {
@@ -29,11 +35,22 @@ public class DialogueManager : MonoBehaviour
             dialogueLabel.text = s;
             yield return new WaitForSeconds(speed);
         }
+        yield return new WaitForSeconds(DecaySpeed);
+        dialogueLabel.RemoveFromClassList("Label-Pulse");
         
     }
     void OnUIReload(PanelRenderer renderer, VisualElement root)
     {
-        dialogueLabel = root.Q<Label>("Dialogue");
+        dialogueLabel = root.Q<Label>("DialogueWindow");
+
+        if(dialogueLabel != null)
+        dialogueLabel.RegisterCallback<ChangeEvent<string>>(OnTextValueChanged);
+        
+    }
+
+    void OnTextValueChanged(ChangeEvent<string> evt)
+    {
+        dialogueLabel.AddToClassList("Label-Pulse");
         
     }
 
@@ -44,6 +61,7 @@ public class DialogueManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if(dialogueLabel != null)
         Dialogue();
     }
 
