@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/USSFiles/Pause.uss?fileID=7433441132597879392&amp;guid=789e6ffc8fdbc77f68023a4833718cf7&amp;type=3#Pause"/>
+    <ui:VisualElement name="root" focusable="false" style="flex-grow: 1;">
+        <ui:Button text="Resume" name="Resume" class="button"/>
+        <ui:Button text="Settings" name="Setting" class="button"/>
+        <ui:Button text="Exit" name="Exit" class="button"/>
+    </ui:VisualElement>
+</ui:UXML>
