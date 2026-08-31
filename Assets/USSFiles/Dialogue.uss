@@ -2,7 +2,7 @@
 }
 
 .Label {
-    font-size: 40px;
+    font-size: 35px;
     top: 70%;
     align-self: center;
     align-items: center;
@@ -22,11 +22,18 @@
     border-bottom-color: rgb(255, 255, 255);
     width: 25%;
     height: 25%;
-    scale: 0.01 0.01;
-    transition-duration: 0.3s;
+    scale: 0.1 1;
+    transition-duration: 0.3s, 0.3s;
+    visibility: visible;
+    opacity: 0;
+    flex-wrap: wrap;
+    transition-property: all, opacity;
+    transition-delay: 0s, 0.3s;
 }
 
 .Label-Pulse {
     scale: 1 1;
     transition-duration: 0.3s;
+    visibility: visible;
+    opacity: 1;
 }

@@ -879,7 +879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
   renderer: {fileID: 984450502}
   test: {fileID: 11400000, guid: 376e493fec92644c8a59e02ab8221bc9, type: 2}
-  names: 0
+  names: 1
   speed: 3
   DecaySpeed: 4
 --- !u!114 &984450501
