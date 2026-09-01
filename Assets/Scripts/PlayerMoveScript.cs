@@ -65,8 +65,15 @@ public class PlayerMoveScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        rg.AddForce(new Vector2 (MoveVec.x * speed, 0), ForceMode2D.Impulse);
     RaycastHit2D hit = Physics2D.BoxCast(transform.position, transform.localScale,0, Vector2.down, raydist, GroundDet);
+
+        if(rg.linearVelocityX * MoveVec.x < 0 && hit == true)
+        rg.linearVelocityX = 0;
+
+        rg.AddForce(new Vector2 (MoveVec.x * speed, 0), ForceMode2D.Impulse);
+
+
+    
         if (jumpBuffer > 0 && canJump)
         {
             isJumping = true;
