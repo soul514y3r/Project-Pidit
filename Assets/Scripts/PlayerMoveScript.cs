@@ -9,6 +9,7 @@ public class PlayerMoveScript : MonoBehaviour
     public float jumpForce;
     public float raydist;
     Rigidbody2D rg;
+    SpriteRenderer rd;
     InputAction MoveAction;
     InputAction JumpAction;
     Vector2 MoveVec;
@@ -24,6 +25,7 @@ public class PlayerMoveScript : MonoBehaviour
     void Awake()
     {
         rg = gameObject.GetComponent<Rigidbody2D>();
+        rd = gameObject.GetComponent<SpriteRenderer>();
         MoveAction = InputSystem.actions.FindAction("Move");
         JumpAction = InputSystem.actions.FindAction("Jump");
     }
@@ -107,6 +109,15 @@ public class PlayerMoveScript : MonoBehaviour
         canJump = false;
 
         shouldcheck = true;
+
+        if(MoveVec.x != 0)
+        {
+        if(rg.linearVelocityX < 0)
+        rd.flipX = true;
+        else
+        rd.flipX = false;  
+        }
+        
         
     }
 
