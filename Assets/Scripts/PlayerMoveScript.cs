@@ -8,8 +8,13 @@ public class PlayerMoveScript : MonoBehaviour
     public float speed;
     public float jumpForce;
     public float raydist;
+    public float jumpTimeMax;
+
+    RaycastHit2D Hit;
+    AudioSource source;
     Rigidbody2D rg;
     SpriteRenderer rd;
+    Collider2D col;
     InputAction MoveAction;
     InputAction JumpAction;
     Vector2 MoveVec;
@@ -21,17 +26,23 @@ public class PlayerMoveScript : MonoBehaviour
 
     public float jumpBufferMax;
     float jumpBuffer;
+    public bool shouldSound;
+    float jumpTimer;
+
+    
 
     void Awake()
-    {
+    {// Gets all refrences
+        source = gameObject.GetComponent<AudioSource>();
         rg = gameObject.GetComponent<Rigidbody2D>();
         rd = gameObject.GetComponent<SpriteRenderer>();
+        col = gameObject.GetComponent<Collider2D>();
         MoveAction = InputSystem.actions.FindAction("Move");
         JumpAction = InputSystem.actions.FindAction("Jump");
     }
 
     void OnEnable()
-    {
+    {//subscribes to the inputs from the new inputsystem
         MoveAction.performed += MoveInp;
         MoveAction.canceled += MoveNot;
         JumpAction.performed += JumpInp;
@@ -39,7 +50,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     void OnDisable()
-    {
+    {//Unsubscribes to the inputs to prevent errors on load
         MoveAction.performed -= MoveInp;
         MoveAction.canceled -= MoveNot;
         JumpAction.performed -= JumpInp;
@@ -65,41 +76,55 @@ public class PlayerMoveScript : MonoBehaviour
         MoveVec = Vector2.zero;
     }
 
-    void FixedUpdate()
+    public void playSound()
     {
-    RaycastHit2D hit = Physics2D.BoxCast(transform.position, transform.localScale,0, Vector2.down, raydist, GroundDet);
+        source.Play();
+    }
 
-        if(rg.linearVelocityX * MoveVec.x < 0 && hit == true)
+    void Update()
+    {
+        if(shouldSound)
+        {
+         //   playSound();
+            shouldSound = false;
+        }
+    }
+
+    void FixedUpdate()
+    {//Raycast for jumping
+    Hit = Physics2D.BoxCast(col.bounds.center, col.bounds.extents *2,0, Vector2.down, raydist, GroundDet);
+
+        //just resets your velocity instantly for more snappy movement
+        if(rg.linearVelocityX * MoveVec.x < 0 && Hit == true)
         rg.linearVelocityX = 0;
 
+        //Movement
         rg.AddForce(new Vector2 (MoveVec.x * speed, 0), ForceMode2D.Impulse);
 
+        //Jumping. So long as your key is down, you continue jumping and continue an ongoing jump. Can cancel on canceled input.
+        if (JumpIsDown && canJump)
+        {
+            jumpTimer = jumpTimeMax;
+            rg.linearVelocityY = 0;
+            rg.AddForce(Vector2.up*jumpForce*5, ForceMode2D.Impulse);
+        }
 
-    
-        if (jumpBuffer > 0 && canJump)
+        if(jumpTimer > 0 && JumpIsDown)
         {
             isJumping = true;
-            Debug.Log("Jumping");
-            rg.linearVelocityY = 0;
-            rg.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            canJump = false;
-            shouldcheck = false; 
-            
-        }
-        if(JumpIsDown)
-        {
-            jumpBuffer = jumpBufferMax;
+            rg.AddForce(Vector2.up*jumpForce, ForceMode2D.Impulse);
         }
         else
         {
-            if (rg.linearVelocityY > 0 && isJumping)
-        {
-            rg.linearVelocityY = 0;
+            isJumping = false;
+            jumpTimer = 0;
         }
-            jumpBuffer -= Time.fixedDeltaTime;
-        }
+        
+            
+        if(jumpTimer > 0)
+        jumpTimer -= Time.fixedDeltaTime;
 
-        if (hit.collider != null && shouldcheck == true)
+        if (Hit.collider != null && shouldcheck == true)
         {
             canJump = true;
             isJumping = false;
@@ -110,6 +135,8 @@ public class PlayerMoveScript : MonoBehaviour
 
         shouldcheck = true;
 
+
+        //flip sprite logic. Will move to method in order to make animating easier
         if(MoveVec.x != 0)
         {
         if(rg.linearVelocityX < 0)
@@ -123,6 +150,7 @@ public class PlayerMoveScript : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y - raydist, 0), transform.localScale);
+        //Debug for the jump raycast
+        Gizmos.DrawWireCube(new Vector3(col.bounds.center.x, col.bounds.center.y - raydist, col.bounds.center.z), col.bounds.extents *2);
     }
 }
