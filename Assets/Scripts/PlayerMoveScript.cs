@@ -151,6 +151,7 @@ public class PlayerMoveScript : MonoBehaviour
     void OnDrawGizmos()
     {
         //Debug for the jump raycast
+        if(col != null)
         Gizmos.DrawWireCube(new Vector3(col.bounds.center.x, col.bounds.center.y - raydist, col.bounds.center.z), col.bounds.extents *2);
     }
 }
