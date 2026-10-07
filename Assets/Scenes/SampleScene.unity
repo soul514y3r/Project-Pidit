@@ -249,7 +249,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6693c0356653e4e40b84e4ef2ff3ff3f, type: 2}
+  - {fileID: 2100000, guid: b16c19b1092035c46a77f93542ae0e03, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -542,6 +542,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FrameDataScript
   data: {fileID: 11400000, guid: 6d76ccc82e28caa4886d3954a248c270, type: 2}
   FrameIndx: 0
+  material: {fileID: 2100000, guid: 1946ad0771ae07a48b0218b86a53a849, type: 2}
+  margin: 2
+  tempColor: {r: 0, g: 1, b: 0, a: 0.56078434}
 --- !u!114 &168725733
 MonoBehaviour:
   m_ObjectHideFlags: 0

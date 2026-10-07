@@ -17,11 +17,18 @@ MonoBehaviour:
     - startpos: {x: 1, y: 1}
       Endpos: {x: 1, y: 0.7}
       radius: 0.6
+      color: {r: 0, g: 0.51689947, b: 1, a: 0.5882353}
   - shapes:
     - startpos: {x: 0, y: 0}
       Endpos: {x: 2, y: 1}
       radius: 0.4
+      color: {r: 0.34685266, g: 1, b: 0, a: 0.53333336}
     - startpos: {x: 0, y: 0}
       Endpos: {x: 0.001, y: 0}
       radius: 0.4
+      color: {r: 1, g: 0, b: 0, a: 1}
+    - startpos: {x: -1.05, y: 1.11}
+      Endpos: {x: 0.54, y: 1.18}
+      radius: 0.4
+      color: {r: 1, g: 0, b: 0, a: 0.5882353}
   - shapes: []

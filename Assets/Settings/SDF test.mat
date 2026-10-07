@@ -45,10 +45,10 @@ Material:
     - _Radi: 20
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0, g: 1, b: 0.27892834, a: 0.7607843}
+    - _BaseColor: {r: 0, g: 1, b: 0.2789283, a: 0.33333334}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EndPos: {r: 400, g: 400, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Startpos: {r: 400, g: 500, b: 0, a: 0}
+    - _Startpos: {r: 528.9, g: 711.3, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

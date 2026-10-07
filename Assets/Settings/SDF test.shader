@@ -12,10 +12,10 @@ Shader "Custom/SDF test"
     {
         HLSLINCLUDE
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-        #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
         ENDHLSL
 
-        Tags { "RenderType"="Transparent" }
+        Tags { "Queue"="Transparent" }
+        Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
         ZWrite Off Cull Off
         Pass
@@ -33,12 +33,34 @@ Shader "Custom/SDF test"
             #pragma vertex Vert
             #pragma fragment Frag
 
+               struct Attributes
+            {
+            float3 positionOS : POSITION;
+            };
+
+
+
+            struct Varyings
+            {
+            float4 positionCS : SV_POSITION;
+            float3 positionWS : TEXCOORD0;
+            
+            };
+            
+            Varyings Vert(Attributes inp)
+            {
+            Varyings output;
+            output.positionWS = TransformObjectToWorld(inp.positionOS);
+            output.positionCS = TransformWorldToHClip(output.positionWS);
+            return output;
+            }
+
             
 
             float4 Frag (Varyings input) : SV_Target
             {
-                float4 color = SAMPLE_TEXTURE2D(_BlitTexture, sampler_LinearClamp, input.texcoord).rgba;
-                float2 pixelPos = input.positionCS.xy/_ScaledScreenParams*1000.0;
+                
+                float2 pixelPos = input.positionWS.xy;
                 float2 pa = pixelPos - _Startpos;
                 float2 ba = _EndPos - _Startpos;
                 float midpos = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
@@ -46,9 +68,9 @@ Shader "Custom/SDF test"
                 float dist = length(pixelPos - closest) - _Radi;
                 float aa = fwidth(dist);
 
-                float mask = (1.0 - smoothstep(-aa, aa, dist)) * _BaseColor.a;;
-                return lerp(color,_BaseColor, mask);
-            };
+                float mask = (1.0 - smoothstep(-aa, aa, dist)) * _BaseColor.a;
+                return float4 (_BaseColor.rgb, mask);
+            }
             
             ENDHLSL
         }
