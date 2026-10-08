@@ -3,12 +3,11 @@
 using UnityEngine;
 
 
-
+[ExecuteAlways]
 public class FrameDataScript : MonoBehaviour
 {
     [Header("FrameData")]
     public FrameData data; 
-    CustomCollider2D cust;
     SpriteRenderer rend;
 
     public int FrameIndx;
@@ -17,6 +16,7 @@ public class FrameDataScript : MonoBehaviour
     public Material material;
     [SerializeField] float margin = 0.1f;   // covers the AA band and any outline
     [SerializeField] Color tempColor;
+    [SerializeField] bool ShouldShow = true;
 
     static readonly int StartId  = Shader.PropertyToID("_Startpos");
     static readonly int EndId    = Shader.PropertyToID("_EndPos");
@@ -25,68 +25,25 @@ public class FrameDataScript : MonoBehaviour
 
     Mesh Quad;
     MaterialPropertyBlock PropBlock;
+    bool hasCached = false;
     
 
   PhysicsShapeGroup2D shapeGroup2D = new PhysicsShapeGroup2D();
 
 void Awake()
     {
-        cust = gameObject.GetComponent<CustomCollider2D>();
         rend = gameObject.GetComponent<SpriteRenderer>();
-        Quad = BuildQuad();
-        PropBlock = new MaterialPropertyBlock();
-        Load();
+        CacheMesh();
+        
     }
 
     void Update()
     {
-        Draw();
+        if(hasCached == false)CacheMesh();
+
+        if(ShouldShow)Draw();
     }
 
-    void ShowCol()
-    {
-        cust = gameObject.GetComponent<CustomCollider2D>();
-        if(cust != null)
-        {
-           cust.SetCustomShapes(shapeGroup2D); 
-        }
-        else
-        Debug.LogError("Can't find customcollider2D, please attach one to the gameobject");
-    }
-
-    void Load()
-    {
-        cust = gameObject.GetComponent<CustomCollider2D>();
-        if(cust != null)
-        {
-            shapeGroup2D.Clear();
-            if(rend.flipX == true)
-            {
-            foreach( Shape sh in data.frames[FrameIndx].shapes)
-            {
-                shapeGroup2D.AddCapsule(new Vector2(-sh.startpos.x,sh.startpos.y),new Vector2(-sh.Endpos.x,sh.Endpos.y), sh.radius);
-                
-                DrawCapsule(new Vector2(-sh.startpos.x,sh.startpos.y),new Vector2(-sh.Endpos.x,sh.Endpos.y),sh.radius, sh.color);
-
-            }
-            }
-
-            else
-            {
-            foreach( Shape sh in data.frames[FrameIndx].shapes)
-            {
-                shapeGroup2D.AddCapsule(sh.startpos,sh.Endpos,sh.radius);
-
-                DrawCapsule(sh.startpos,sh.Endpos,sh.radius, sh.color);
-            } 
-            }
-            
-            
-           cust.SetCustomShapes(shapeGroup2D); 
-        }
-        else
-        Debug.LogError("Can't find customcollider2D, please attach one to the gameobject");
-    }
     void Draw()
     {
         #if UNITY_EDITOR
@@ -114,9 +71,6 @@ void Awake()
     }
 
 
-
-    [ContextMenu("Show Collider")] void showcol() => ShowCol();
-    [ContextMenu("Load Collider Data")] void load() => Load();
 
     //Rendering part
     public void DrawCapsule(Vector2 strt, Vector2 nd, float radi, Color color, float z = 0f)
@@ -147,6 +101,13 @@ void Awake()
         };
         mesh.triangles = new[] { 0, 1, 2, 0, 2, 3 };
         return mesh;
+    }
+
+    void CacheMesh()
+    {
+        Quad = BuildQuad();
+        PropBlock = new MaterialPropertyBlock();
+        hasCached = true;
     }
 
 

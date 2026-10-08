@@ -31,4 +31,12 @@ MonoBehaviour:
       Endpos: {x: 0.54, y: 1.18}
       radius: 0.4
       color: {r: 1, g: 0, b: 0, a: 0.5882353}
-  - shapes: []
+  - shapes:
+    - startpos: {x: 0, y: 0}
+      Endpos: {x: 1, y: 0}
+      radius: 0.4
+      color: {r: 0.08611512, g: 1, b: 0, a: 0.15686275}
+    - startpos: {x: 1, y: 1}
+      Endpos: {x: 1, y: 0}
+      radius: 0.4
+      color: {r: 1, g: 0, b: 0.77521884, a: 0.6745098}
