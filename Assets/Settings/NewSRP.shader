@@ -2,7 +2,7 @@ Shader "Custom/NewSRP"
 {   
     Properties
     {
-        _BaseColor("Base Color", Color) = (1, 1, 1, 1)
+        _BaseMult("Multiplier", Float) = 1
         _BaseMap("Base Map", 2D) = "white" {}
         
     }
@@ -24,7 +24,7 @@ Shader "Custom/NewSRP"
             HLSLPROGRAM
 
             CBUFFER_START(Post)
-            float4 _BaseColor;
+            float _BaseMult;
             CBUFFER_END
             
             #pragma vertex Vert
@@ -38,7 +38,7 @@ Shader "Custom/NewSRP"
                 float4 color = SAMPLE_TEXTURE2D(_BlitTexture, sampler_LinearClamp, input.texcoord).rgba;
                 float4 colour = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.texcoord).rgba;
                 float3 HSV = RgbToHsv(colour.rgb);
-                float4 outcolour = lerp(color, 1-color, HSV.z);
+                float4 outcolour = lerp(color, 1-color, HSV.z*_BaseMult);
                 return outcolour;
             }
             

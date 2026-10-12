@@ -53,7 +53,7 @@ MonoBehaviour:
   m_CameraSortingLayerDownsamplingMethod: 0
   m_MaxLightRenderTextureCount: 16
   m_MaxShadowRenderTextureCount: 1
-  m_PostProcessData: {fileID: 11400000, guid: 865505e61b521844bbc0c60073d14fd0, type: 2}
+  m_PostProcessData: {fileID: 11400000, guid: 5ff37bf39f1525c47b262aafc95814e0, type: 2}
   m_DefaultMaterialType: 0
   m_DefaultCustomMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
 --- !u!114 &6463268210696153386
@@ -72,7 +72,7 @@ MonoBehaviour:
   injectionPoint: 600
   fetchColorBuffer: 1
   requirements: 7
-  passMaterial: {fileID: 2100000, guid: 1946ad0771ae07a48b0218b86a53a849, type: 2}
+  passMaterial: {fileID: 2100000, guid: 2d3ac21403e7c084cb4c339b18802aa5, type: 2}
   passIndex: 0
   bindDepthStencilAttachment: 0
   m_Version: 1
