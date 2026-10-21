@@ -2,7 +2,7 @@ Shader "Custom/InvertWave"
 {   
     Properties
     {
-        _Extents ("Extents", VECTOR) = (1,1,0,0)
+        _Orig ("Origin", VECTOR) = (1,1,0,0)
         _Radi ("Radius", FLOAT) = 1
         _Const("const", FLOAT) = 1
         
@@ -24,7 +24,7 @@ Shader "Custom/InvertWave"
             HLSLPROGRAM
 
             CBUFFER_START(post)
-            float2 _Extents;
+            float2 _Orig;
             float _Radi;
             float _Const;
             CBUFFER_END
@@ -37,8 +37,8 @@ Shader "Custom/InvertWave"
             float4 Frag (Varyings input) : SV_Target
             {
                 float2 pixelPos = input.texcoord;
-                float dist = length(pixelPos - _Extents) - _Radi;
-                float hole = length(pixelPos - _Extents) - _Const;
+                float dist = length(pixelPos - _Orig) - _Radi;
+                float hole = length(pixelPos - _Orig) - _Const;
                 float aa = fwidth(dist);
 
                 float mask = (1.0 - smoothstep(-aa, aa, dist)) - (1.0 - smoothstep(-aa, aa, hole));

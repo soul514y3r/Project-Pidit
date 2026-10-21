@@ -14,6 +14,7 @@ public class FollowPlayerScript : MonoBehaviour
     public float delay;
     public float MinSize;
     public float Middlemult;
+    public uint FPSlock;
     Vector2 MoveVec;
     float DelayTimer;
     float MoveDeltaX;
@@ -24,6 +25,8 @@ public class FollowPlayerScript : MonoBehaviour
 
     void Awake()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = (int)FPSlock; 
         cam = gameObject.GetComponent<Camera>();
         Midpos = GameObject.Find("Midpos");
     }

@@ -29,10 +29,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Const: 2.00018
-    - _Radi: 4.00036
+    - _Const: 2.0111501
+    - _Radi: 2.0104222
     m_Colors:
-    - _Extents: {r: 0.51907605, g: 0.47652176, b: 0, a: 0}
+    - _Extents: {r: 0.69907606, g: 0.5078261, b: 0, a: 0}
+    - _Orig: {r: 0.96418476, g: 0.9426087, b: 0, a: 0}
     - _Radi: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
