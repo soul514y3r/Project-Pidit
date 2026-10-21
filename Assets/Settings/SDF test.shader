@@ -7,6 +7,7 @@ Shader "Custom/SDF test"
         _EndPos("End Position", Vector) = (1,1,0,0)
         _Radi("Radius", Float) = 1
         
+        
     }
     SubShader
     {
@@ -28,6 +29,7 @@ Shader "Custom/SDF test"
             float2 _Startpos;
             float2 _EndPos;
             float _Radi;
+            
             CBUFFER_END
             
             #pragma vertex Vert
@@ -54,6 +56,7 @@ Shader "Custom/SDF test"
             output.positionCS = TransformWorldToHClip(output.positionWS);
             return output;
             }
+            
 
             
 
@@ -70,6 +73,7 @@ Shader "Custom/SDF test"
 
                 float mask = (1.0 - smoothstep(-aa, aa, dist)) * _BaseColor.a;
                 return float4 (_BaseColor.rgb, mask);
+                
             }
             
             ENDHLSL

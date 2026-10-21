@@ -1,5 +1,4 @@
 
-
 using UnityEngine;
 
 
@@ -46,7 +45,7 @@ void Awake()
 
     void Draw()
     {
-        #if UNITY_EDITOR
+        
         if(rend == null)
         rend = gameObject.GetComponent<SpriteRenderer>();
         if(rend == null) return;
@@ -67,7 +66,7 @@ void Awake()
                 DrawCapsule(sh.startpos,sh.Endpos,sh.radius, sh.color);
             } 
             }
-            #endif
+            
     }
 
 

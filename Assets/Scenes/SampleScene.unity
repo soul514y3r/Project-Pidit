@@ -502,11 +502,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FrameDataScript
   data: {fileID: 11400000, guid: 6d76ccc82e28caa4886d3954a248c270, type: 2}
-  FrameIndx: 1
+  FrameIndx: 0
   material: {fileID: 2100000, guid: 1946ad0771ae07a48b0218b86a53a849, type: 2}
   margin: 2
   tempColor: {r: 0, g: 1, b: 0, a: 0.56078434}
-  ShouldShow: 1
+  ShouldShow: 0
 --- !u!114 &168725733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,6 +847,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -994,6 +995,25 @@ MonoBehaviour:
   delay: 2
   MinSize: 3
   Middlemult: 0.0005
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99884c9df86b2c14aa51db18993945b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InvertclickScript
+  Timermax: 4
+  timer: 0
+  timemult: 3.5
+  cutout: 0
+  cutmult: 2
+  Normalpos: {x: 0, y: 0}
+  material: {fileID: 2100000, guid: a83dc422cc3dc17459fcc25dc50d451f, type: 2}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
