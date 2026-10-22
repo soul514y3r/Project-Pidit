@@ -25,15 +25,17 @@ public class InvertclickScript : MonoBehaviour
     {
         if(Mouse.current.leftButton.isPressed)
         {
+            Stage();
+        }
+        else if(Mouse.current.leftButton.wasReleasedThisFrame)
+        {
             Invert();
         }
-        if(timer>=Timermax*tTC && cutout < timer)
-        {
-            cutout += Time.deltaTime*cutmult;
-        }
-        if(timer < Timermax)
+        else if(timer < Timermax)
         timer += Time.deltaTime*timemult;
 
+        if(timer>=Timermax*tTC && cutout < timer)
+            cutout += Time.deltaTime*cutmult;
         
 
         
@@ -41,6 +43,13 @@ public class InvertclickScript : MonoBehaviour
         material.SetFloat(constID, cutout);
         material.SetVector(OrigID, Normalpos);
 
+    }
+
+    void Stage()
+    {
+        Normalpos = new Vector2(Mouse.current.position.ReadValue().x/Screen.width, Mouse.current.position.ReadValue().y/Screen.height);
+            cutout = 0;
+            timer = Random.Range(0.01f, 0.05f);
     }
     void Invert()
     {
