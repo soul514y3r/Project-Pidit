@@ -1009,12 +1009,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InvertclickScript
   material: {fileID: 2100000, guid: a83dc422cc3dc17459fcc25dc50d451f, type: 2}
-  Timermax: 2
+  Timermax: 4
   timemult: 4
-  tTC: 0.5
-  cutmult: 1
-  timer: 0
-  cutout: 0
+  tTC: 0.6
+  cutmult: 0.5
+  timer: 4
+  cutout: 4
   Normalpos: {x: 0, y: 0}
 --- !u!1 &619394800
 GameObject:

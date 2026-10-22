@@ -2,6 +2,7 @@ Shader "Custom/InvertWave"
 {   
     Properties
     {
+        _BaseColor("Base Color", Color) = (1, 1, 1, 1)
         _Orig ("Origin", VECTOR) = (1,1,0,0)
         _Radi ("Radius", FLOAT) = 1
         _Const("const", FLOAT) = 1
@@ -27,6 +28,7 @@ Shader "Custom/InvertWave"
             float2 _Orig;
             float _Radi;
             float _Const;
+            float4 _BaseColor;
             CBUFFER_END
             
             #pragma vertex Vert
@@ -43,7 +45,7 @@ Shader "Custom/InvertWave"
 
                 float mask = (1.0 - smoothstep(-aa, aa, dist)) - (1.0 - smoothstep(-aa, aa, hole));
                 float4 color = SAMPLE_TEXTURE2D(_BlitTexture, sampler_LinearClamp, input.texcoord).rgba;
-                float4 outcolor = lerp(color, 1- color, mask);
+                float4 outcolor = lerp(color, _BaseColor- color, mask);
 
                 return outcolor;
             }
